@@ -1,0 +1,27 @@
+<project name="SitairisProject" default="build" basedir=".">
+    <!-- Определение путей -->
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="dist.dir" value="dist"/>
+
+    <!-- Очистка старых сборок -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <!-- Компиляция -->
+    <target name="compile" depends="clean">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}"/>
+    </target>
+
+    <!-- Создание JAR -->
+    <target name="jar" depends="compile">
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.dir}/project.jar" basedir="${build.dir}"/>
+    </target>
+
+    <!-- Цель по умолчанию -->
+    <target name="build" depends="jar"/>
+</project>
